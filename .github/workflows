@@ -1,1 +1,53 @@
+name: 🇧🇩 BD Live Threat Map — Collect & Deploy
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # প্রতি ৩০ মিনিট
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  collect-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests feedparser
+
+      - name: Collect live threat data
+        env:
+          OTX_API_KEY:     ${{ secrets.OTX_API_KEY }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          IPINFO_KEY:      ${{ secrets.IPINFO_KEY }}
+        run: python3 collect_threats.py
+
+      - name: Commit live_threats.json
+        run: |
+          git config user.name  "BD Threat Bot"
+          git config user.email "bot@bd-threat-map.local"
+          git add docs/live_threats.json
+          git diff --staged --quiet || git commit -m "chore: update live threats $(date -u +%H:%M)"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
 
