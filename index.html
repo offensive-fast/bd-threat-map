@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bangladesh Live Cyber Threat Map</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Courier New',monospace;background:#0a0f1a;color:#e2e8f0;height:100vh;overflow:hidden}
+#app{display:flex;flex-direction:column;height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#0d1425;border-bottom:1px solid #1e3a5f;flex-shrink:0}
+.logo{font-size:13px;font-weight:bold;color:#22d3ee;letter-spacing:.1em}
+.live-indicator{display:flex;align-items:center;gap:6px;font-size:11px;color:#94a3b8}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,.6)}50%{opacity:.5;box-shadow:0 0 0 4px rgba(34,197,94,0)}}
+.stats-bar{display:flex;gap:8px}
+.stat{font-size:10px;padding:3px 9px;border-radius:20px;border:1px solid #1e3a5f;color:#94a3b8}
+.stat b{color:#e2e8f0}
+.main{display:flex;flex:1;overflow:hidden}
+#mapWrap{flex:1;position:relative;background:#060d18}
+svg#map{width:100%;height:100%}
+.sidebar{width:290px;background:#0d1425;border-left:1px solid #1e3a5f;display:flex;flex-direction:column;overflow:hidden}
+.filter-bar{padding:8px 10px;border-bottom:1px solid #1e3a5f;display:flex;flex-wrap:wrap;gap:4px}
+.fbtn{font-size:10px;padding:3px 8px;border-radius:12px;border:1px solid #1e3a5f;background:transparent;color:#64748b;cursor:pointer;font-family:'Courier New',monospace}
+.fbtn.on{background:#1e3a5f;color:#22d3ee;border-color:#22d3ee}
+.feed-header{padding:8px 12px;font-size:9px;color:#475569;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid #1e3a5f}
+#feed{flex:1;overflow-y:auto;padding:6px}
+#feed::-webkit-scrollbar{width:3px}
+#feed::-webkit-scrollbar-thumb{background:#1e3a5f}
+.card{background:#0a0f1a;border:1px solid #1e293b;border-radius:6px;padding:8px 10px;margin-bottom:5px;cursor:pointer;transition:border-color .15s}
+.card:hover,.card.sel{border-color:#22d3ee}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.card-apt{font-size:11px;font-weight:bold;color:#e2e8f0}
+.card-sev{font-size:9px;padding:2px 6px;border-radius:10px;font-weight:bold}
+.sev-critical{background:#450a0a;color:#f87171}
+.sev-high{background:#431407;color:#fb923c}
+.sev-medium{background:#422006;color:#fbbf24}
+.card-row{display:flex;justify-content:space-between;margin-bottom:2px}
+.card-label{font-size:9px;color:#475569}
+.card-val{font-size:9px;color:#94a3b8;max-width:160px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+#detail{background:#060d18;border-top:1px solid #1e3a5f;padding:10px;display:none;max-height:55%;overflow-y:auto;font-size:10px}
+#detail::-webkit-scrollbar{width:3px}
+#detail::-webkit-scrollbar-thumb{background:#1e3a5f}
+.d-section{margin-bottom:8px}
+.d-title{font-size:9px;color:#475569;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;border-bottom:1px solid #1e293b;padding-bottom:3px}
+.d-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.d-item{background:#0d1425;border-radius:4px;padding:5px 7px}
+.d-item.full{grid-column:1/-1}
+.d-key{font-size:8px;color:#475569;margin-bottom:2px}
+.d-val{font-size:10px;color:#94a3b8;word-break:break-all}
+.ioc-pill{display:inline-block;font-size:8px;font-family:'Courier New',monospace;padding:2px 5px;border-radius:3px;margin:2px 2px 2px 0}
+.ioc-ip{background:#1a1a2e;color:#818cf8;border:1px solid #312e81}
+.ioc-domain{background:#1a1a2e;color:#34d399;border:1px solid #064e3b}
+.ioc-hash{background:#1a1a2e;color:#f472b6;border:1px solid #500724}
+.ioc-cve{background:#1a1a2e;color:#f87171;border:1px solid #450a0a}
+.ttp-pill{display:inline-block;font-size:8px;padding:2px 5px;border-radius:3px;background:#0f172a;color:#38bdf8;border:1px solid #0369a1;margin:2px 2px 2px 0}
+.src-link{font-size:9px;color:#22d3ee;text-decoration:none}
+.src-link:hover{text-decoration:underline}
+.tooltip{position:absolute;background:#0d1425;border:1px solid #22d3ee;border-radius:6px;padding:8px 10px;font-size:10px;pointer-events:none;z-index:200;min-width:170px;display:none}
+.legend{position:absolute;bottom:12px;left:12px;background:rgba(13,20,37,.9);border:1px solid #1e3a5f;border-radius:6px;padding:8px 10px;font-size:10px}
+.legend-row{display:flex;align-items:center;gap:6px;margin-bottom:3px;color:#64748b}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.no-data{text-align:center;padding:30px;color:#334155;font-size:11px}
+#loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#22d3ee;font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="live-dot"></div>
+    <span class="logo">🇧🇩 BD LIVE CYBER THREAT MAP</span>
+  </div>
+  <div class="stats-bar">
+    <div class="stat">Threats <b id="s-total">0</b></div>
+    <div class="stat">🔴 Critical <b id="s-crit">0</b></div>
+    <div class="stat">🟠 High <b id="s-high">0</b></div>
+    <div class="stat">Countries <b id="s-ctry">0</b></div>
+    <div class="stat">IOCs <b id="s-iocs">0</b></div>
+    <div class="stat">Updated <b id="s-time">--:--</b></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div id="mapWrap">
+    <svg id="map" viewBox="0 0 960 500"></svg>
+    <div id="tooltip" class="tooltip"></div>
+    <div class="legend">
+      <div class="legend-row"><div class="legend-dot" style="background:#ef4444"></div>Critical</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#f97316"></div>High</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#eab308"></div>Medium</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#22c55e"></div>Bangladesh (Target)</div>
+    </div>
+    <div id="loading">Loading live threat data...</div>
+  </div>
+
+  <div class="sidebar">
+    <div class="filter-bar">
+      <button class="fbtn on" onclick="setFilter('all','sev',this)">All</button>
+      <button class="fbtn" onclick="setFilter('critical','sev',this)">Critical</button>
+      <button class="fbtn" onclick="setFilter('high','sev',this)">High</button>
+      <button class="fbtn" onclick="setFilter('Banking','sector',this)">Banking</button>
+      <button class="fbtn" onclick="setFilter('Government','sector',this)">Gov</button>
+      <button class="fbtn" onclick="setFilter('Military','sector',this)">Military</button>
+      <button class="fbtn" onclick="setFilter('Energy','sector',this)">Energy</button>
+      <button class="fbtn" onclick="setFilter('Telecom','sector',this)">Telecom</button>
+      <button class="fbtn" onclick="setFilter('Maritime','sector',this)">Maritime</button>
+    </div>
+    <div class="feed-header">Live Attack Feed</div>
+    <div id="feed"></div>
+    <div id="detail"></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+const W=960,H=500;
+let allThreats=[],filteredThreats=[],selectedId=null;
+let filterSev='all',filterSector=null;
+
+function proj(lat,lng){
+  return [(lng+180)*(W/360),(90-lat)*(H/180)];
+}
+
+const svg=document.getElementById('map');
+
+function svgEl(tag,attrs){
+  const el=document.createElementNS('http://www.w3.org/2000/svg',tag);
+  for(const[k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+  return el;
+}
+
+function drawBase(){
+  svg.innerHTML='';
+  // Ocean
+  svg.appendChild(svgEl('rect',{x:0,y:0,width:W,height:H,fill:'#060d18'}));
+  // Grid
+  for(let lng=-180;lng<180;lng+=30){
+    const [x]=proj(0,lng);
+    svg.appendChild(svgEl('line',{x1:x,y1:0,x2:x,y2:H,stroke:'#0d1f38','stroke-width':'0.5'}));
+  }
+  for(let lat=-90;lat<=90;lat+=30){
+    const[,y]=proj(lat,0);
+    svg.appendChild(svgEl('line',{x1:0,y1:y,x2:W,y2:y,stroke:'#0d1f38','stroke-width':'0.5'}));
+  }
+
+  const COUNTRIES=[
+    // [id, [[lat,lng],...bounds], labelLat, labelLng, label, isBD]
+    ['cn',[[20,73],[20,135],[55,135],[55,73]],38,104,'CHINA',false],
+    ['in',[[8,68],[8,97],[37,97],[37,68]],22,82,'INDIA',false],
+    ['ru',[[50,28],[50,140],[77,140],[77,28]],60,84,'RUSSIA',false],
+    ['pk',[[24,61],[24,77],[37,77],[37,61]],30,69,'PAKISTAN',false],
+    ['kp',[[37,124],[37,130],[42,130],[42,124]],39,127,'N.KOREA',false],
+    ['bd',[[21,88],[21,93],[26.5,93],[26.5,88]],23.7,90.5,'BANGLADESH',true],
+    ['np',[[26,80],[26,88],[29,88],[29,80]],27.5,84,'NEPAL',false],
+    ['mm',[[10,92],[10,102],[28,102],[28,92]],18,97,'MYANMAR',false],
+    ['lk',[[6,80],[6,82],[10,82],[10,80]],8,81,'SL',false],
+    ['jp',[[30,130],[30,146],[46,146],[46,130]],36,138,'JAPAN',false],
+    ['th',[[6,98],[6,106],[20,106],[20,98]],13,102,'THAILAND',false],
+    ['au',[[-40,113],[-40,154],[-11,154],[-11,113]],-27,133,'AUSTRALIA',false],
+    ['us',[[25,-125],[25,-67],[49,-67],[49,-125]],37,-100,'USA',false],
+    ['gb',[[50,-5],[50,2],[58,2],[58,-5]],54,-2,'UK',false],
+    ['de',[[47,6],[47,15],[55,15],[55,6]],51,10,'GERMANY',false],
+    ['fr',[[43,-2],[43,8],[51,8],[51,-2]],47,3,'FRANCE',false],
+    ['sg',[[1,103],[1,104],[2,104],[2,103]],1.3,103.8,'SG',false],
+    ['id',[[-8,95],[-8,141],[6,141],[6,95]],0,118,'INDONESIA',false],
+  ];
+
+  for(const[,pts,llat,llng,label,isBD] of COUNTRIES){
+    const points=pts.map(([la,ln])=>proj(la,ln).join(',')).join(' ');
+    const poly=svgEl('polygon',{points,fill:isBD?'#052e16':'#0d1b2a',stroke:isBD?'#059669':'#1e3a5f','stroke-width':isBD?'1.5':'0.5'});
+    svg.appendChild(poly);
+    const[lx,ly]=proj(llat,llng);
+    const txt=svgEl('text',{x:lx,y:ly,'font-size':isBD?'8.5':'6.5',fill:isBD?'#34d399':'#1e3a5f','text-anchor':'middle','dominant-baseline':'middle','pointer-events':'none','font-family':'Courier New,monospace','font-weight':isBD?'bold':'normal'});
+    txt.textContent=label;
+    svg.appendChild(txt);
+  }
+
+  // BD target marker
+  const[bx,by]=proj(23.68,90.35);
+  const ring=svgEl('circle',{cx:bx,cy:by,r:'9',fill:'none',stroke:'#22c55e','stroke-width':'1.5'});
+  svg.appendChild(ring);
+  svg.appendChild(svgEl('circle',{cx:bx,cy:by,r:'4',fill:'#22c55e'}));
+  const lbl=svgEl('text',{x:bx+12,y:by-7,'font-size':'7',fill:'#34d399','font-family':'Courier New,monospace','font-weight':'bold'});
+  lbl.textContent='TARGET';
+  svg.appendChild(lbl);
+}
+
+function drawThreats(threats){
+  document.querySelectorAll('.t-dot,.t-pulse,.t-line').forEach(e=>e.remove());
+  for(const t of threats){
+    const[sx,sy]=proj(t.lat,t.lng);
+    const[tx,ty]=proj(t.target_lat,t.target_lng);
+    const col=t.color||'#6b7280';
+    // Arc
+    const mx=(sx+tx)/2, my=Math.min(sy,ty)-50;
+    const path=svgEl('path',{d:`M${sx},${sy} Q${mx},${my} ${tx},${ty}`,fill:'none',stroke:col,'stroke-width':'0.8',opacity:'0.4','class':'t-line','stroke-dasharray':'5,3'});
+    svg.appendChild(path);
+    // Pulse ring
+    const pulse=svgEl('circle',{cx:sx,cy:sy,r:'4',fill:'none',stroke:col,'stroke-width':'1','class':'t-dot t-pulse'});
+    const a1=svgEl('animate',{attributeName:'r',from:'4',to:'16',dur:'2s',repeatCount:'indefinite',begin:`${Math.random()*2}s`});
+    const a2=svgEl('animate',{attributeName:'opacity',from:'0.7',to:'0',dur:'2s',repeatCount:'indefinite',begin:`${Math.random()*2}s`});
+    pulse.appendChild(a1);pulse.appendChild(a2);
+    svg.appendChild(pulse);
+    // Dot
+    const dot=svgEl('circle',{cx:sx,cy:sy,r:'4',fill:col,'class':'t-dot'});
+    dot.style.cursor='pointer';
+    dot.addEventListener('mouseover',e=>showTip(e,t));
+    dot.addEventListener('mousemove',moveTip);
+    dot.addEventListener('mouseout',hideTip);
+    dot.addEventListener('click',()=>selectThreat(t.id));
+    svg.appendChild(dot);
+  }
+}
+
+const tip=document.getElementById('tooltip');
+function showTip(e,t){
+  tip.innerHTML=`<div><b style="color:#22d3ee">${t.flag} ${t.apt}</b><br>
+  <span style="color:#475569">IP: </span><span style="color:#94a3b8">${t.ip||'?'}</span><br>
+  <span style="color:#475569">Target: </span><span style="color:#94a3b8">${t.sector} — BD</span><br>
+  <span style="color:#475569">Severity: </span><span style="color:${t.color}">${(t.severity||'').toUpperCase()}</span></div>`;
+  tip.style.display='block';moveTip(e);
+}
+function moveTip(e){
+  const r=document.getElementById('mapWrap').getBoundingClientRect();
+  let x=e.clientX-r.left+12,y=e.clientY-r.top-50;
+  if(x+180>r.width)x=e.clientX-r.left-195;
+  tip.style.left=x+'px';tip.style.top=y+'px';
+}
+function hideTip(){tip.style.display='none';}
+
+function selectThreat(id){
+  selectedId=id;
+  const t=allThreats.find(x=>x.id===id);
+  const detail=document.getElementById('detail');
+  if(!t){detail.style.display='none';detail.innerHTML='';renderFeed();return;}
+
+  function iocClass(val){
+    if(/^\d{1,3}\.\d/.test(val)) return 'ioc-ip';
+    if(/CVE-/.test(val)) return 'ioc-cve';
+    if(/[a-fA-F0-9]{16}/.test(val)) return 'ioc-hash';
+    return 'ioc-domain';
+  }
+
+  detail.style.display='block';
+  detail.innerHTML=`
+  <div class="d-section">
+    <div class="d-title">Attacker</div>
+    <div class="d-grid">
+      <div class="d-item"><div class="d-key">APT Group</div><div class="d-val" style="color:#22d3ee">${t.flag} ${t.apt}</div></div>
+      <div class="d-item"><div class="d-key">Severity</div><div class="d-val" style="color:${t.color}">${(t.severity||'').toUpperCase()}</div></div>
+      <div class="d-item"><div class="d-key">Source IP</div><div class="d-val">${t.ip||'?'}</div></div>
+      <div class="d-item"><div class="d-key">Country</div><div class="d-val">${t.flag} ${t.origin||'?'}</div></div>
+      <div class="d-item full"><div class="d-key">ASN</div><div class="d-val">${t.asn||'?'}</div></div>
+      <div class="d-item"><div class="d-key">City</div><div class="d-val">${t.city||'?'}</div></div>
+      <div class="d-item"><div class="d-key">Motivation</div><div class="d-val">${t.motivation||'?'}</div></div>
+    </div>
+  </div>
+  <div class="d-section">
+    <div class="d-title">Target (Bangladesh)</div>
+    <div class="d-grid">
+      <div class="d-item"><div class="d-key">Target IP</div><div class="d-val">${t.target_ip||'?'}</div></div>
+      <div class="d-item"><div class="d-key">City</div><div class="d-val">${t.target_city||'?'}</div></div>
+      <div class="d-item full"><div class="d-key">Organization</div><div class="d-val" style="color:#94a3b8">${t.target_org||'?'}</div></div>
+      <div class="d-item full"><div class="d-key">ASN</div><div class="d-val">${t.target_asn||'?'}</div></div>
+      <div class="d-item full"><div class="d-key">Device / System</div><div class="d-val">${t.target_device||'?'}</div></div>
+      <div class="d-item"><div class="d-key">Sector</div><div class="d-val" style="color:#38bdf8">${t.sector||'?'}</div></div>
+    </div>
+  </div>
+  <div class="d-section">
+    <div class="d-title">Threat Intel</div>
+    <div class="d-grid">
+      <div class="d-item full"><div class="d-key">Malware / Tool</div><div class="d-val" style="color:#f472b6">${t.malware||'?'}</div></div>
+      <div class="d-item full"><div class="d-key">MITRE ATT&amp;CK TTPs</div><div class="d-val">${(t.ttp||[]).map(x=>`<span class="ttp-pill">${x}</span>`).join('')||'—'}</div></div>
+      <div class="d-item full"><div class="d-key">Description</div><div class="d-val" style="color:#64748b;line-height:1.5">${t.description||'—'}</div></div>
+      <div class="d-item"><div class="d-key">Detected</div><div class="d-val">${t.time||'?'}</div></div>
+      <div class="d-item"><div class="d-key">Source</div><div class="d-val"><a href="${t.source_url||'#'}" target="_blank" class="src-link">${t.source||'?'}</a></div></div>
+    </div>
+  </div>
+  <div class="d-section">
+    <div class="d-title">IOCs</div>
+    ${(t.iocs||[]).map(ioc=>`<span class="ioc-pill ${iocClass(ioc)}">${ioc}</span>`).join('')||'—'}
+  </div>`;
+
+  renderFeed();
+}
+
+function renderFeed(){
+  const list=document.getElementById('feed');
+  list.innerHTML='';
+  if(!filteredThreats.length){
+    list.innerHTML='<div class="no-data">No threats match filter</div>';
+    return;
+  }
+  for(const t of filteredThreats){
+    const card=document.createElement('div');
+    card.className='card'+(selectedId===t.id?' sel':'');
+    card.innerHTML=`
+    <div class="card-head">
+      <span class="card-apt">${t.flag} ${t.apt}</span>
+      <span class="card-sev sev-${t.severity}">${t.severity}</span>
+    </div>
+    <div class="card-row"><span class="card-label">IP</span><span class="card-val">${t.ip||'?'}</span></div>
+    <div class="card-row"><span class="card-label">Target</span><span class="card-val">${t.sector} — ${t.target_city||'BD'}</span></div>
+    <div class="card-row"><span class="card-label">Org</span><span class="card-val">${t.target_org||'?'}</span></div>
+    <div class="card-row"><span class="card-label">Malware</span><span class="card-val">${t.malware||'?'}</span></div>
+    <div class="card-row"><span class="card-label">Time</span><span class="card-val">${(t.time||'').slice(11)}</span></div>`;
+    card.onclick=()=>selectThreat(t.id);
+    list.appendChild(card);
+  }
+
+  const stats=getStats();
+  document.getElementById('s-total').textContent=stats.total;
+  document.getElementById('s-crit').textContent=stats.critical;
+  document.getElementById('s-high').textContent=stats.high;
+  document.getElementById('s-ctry').textContent=stats.countries;
+  document.getElementById('s-iocs').textContent=stats.iocs;
+  document.getElementById('s-time').textContent=new Date().toTimeString().slice(0,5);
+}
+
+function getStats(){
+  return {
+    total:     filteredThreats.length,
+    critical:  filteredThreats.filter(t=>t.severity==='critical').length,
+    high:      filteredThreats.filter(t=>t.severity==='high').length,
+    countries: [...new Set(filteredThreats.map(t=>t.origin))].length,
+    iocs:      filteredThreats.reduce((a,t)=>a+(t.iocs||[]).length,0),
+  };
+}
+
+function applyFilter(){
+  filteredThreats=allThreats.filter(t=>{
+    if(filterSev!=='all' && t.severity!==filterSev) return false;
+    if(filterSector && t.sector!==filterSector) return false;
+    return true;
+  });
+  drawThreats(filteredThreats);
+  renderFeed();
+}
+
+function setFilter(val,type,btn){
+  if(type==='sev'){
+    filterSev=val; filterSector=null;
+  } else {
+    filterSector=(filterSector===val)?null:val;
+    filterSev='all';
+  }
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.toggle('on');
+  if(filterSev==='all'&&!filterSector) document.querySelector('.fbtn').classList.add('on');
+  selectedId=null;
+  document.getElementById('detail').style.display='none';
+  applyFilter();
+}
+
+async function loadData(){
+  document.getElementById('loading').style.display='block';
+  try {
+    const r=await fetch('live_threats.json?t='+Date.now());
+    if(!r.ok) throw new Error('No data');
+    const data=await r.json();
+    allThreats=data.threats||[];
+    document.getElementById('loading').style.display='none';
+  } catch(e){
+    // Demo data fallback
+    document.getElementById('loading').textContent='Using demo data (live_threats.json not found)';
+    setTimeout(()=>document.getElementById('loading').style.display='none',2000);
+    allThreats=DEMO_THREATS;
+  }
+  applyFilter();
+}
+
+const DEMO_THREATS=[
+  {id:"d1",apt:"SloppyLemming",origin:"India",flag:"🇮🇳",color:"#ef4444",ip:"103.42.148.29",asn:"AS45629 — JTTI, IN",city:"Mumbai",country:"India",lat:19.08,lng:72.88,sector:"Government",target_ip:"103.116.196.50",target_org:"Bangladesh Election Commission",target_asn:"AS38193 BTTB-BD",target_city:"Dhaka",target_lat:23.72,target_lng:90.40,target_device:"Apache 2.4.41",motivation:"Espionage",severity:"critical",malware:"BurrowShell Backdoor",ttp:["T1566.001","T1574.002","T1056.001"],iocs:["bd-gov-update.cloudworkers.dev","185.220.101.45","a3f1b2c4"],description:"BurrowShell backdoor via spearphishing PDF targeting BD government.",time:"2026-06-20 08:14",source:"Arctic Wolf",source_url:"https://arcticwolf.com"},
+  {id:"d2",apt:"Lazarus Group",origin:"North Korea",flag:"🇰🇵",color:"#ef4444",ip:"175.45.178.14",asn:"AS131279 — STAR-KP",city:"Pyongyang",country:"North Korea",lat:39.01,lng:125.75,sector:"Banking",target_ip:"202.4.96.10",target_org:"Bangladesh Bank SWIFT",target_asn:"AS17494 BBIL-BD",target_city:"Dhaka",target_lat:23.72,target_lng:90.40,target_device:"IBM MQ SWIFT Gateway",motivation:"Financial Theft",severity:"critical",malware:"AppleJeus",ttp:["T1657","T1195","T1566"],iocs:["swift-bd.update-srv.com","175.45.178.14"],description:"SWIFT manipulation targeting Bangladesh Bank interbank transfers.",time:"2026-06-20 06:33",source:"CISA",source_url:"https://cisa.gov"},
+  {id:"d3",apt:"SideWinder",origin:"India",flag:"🇮🇳",color:"#f97316",ip:"43.229.84.19",asn:"AS55836 — RELIANCEJIO-IN",city:"Chennai",country:"India",lat:13.08,lng:80.27,sector:"Maritime",target_ip:"203.76.192.45",target_org:"Chittagong Port Authority",target_asn:"AS18144 CPA-BD",target_city:"Chittagong",target_lat:22.33,target_lng:91.80,target_device:"Port Management v3.2",motivation:"Maritime Espionage",severity:"high",malware:"WarHawk Backdoor",ttp:["T1566.001","T1204","T1041"],iocs:["cpa-bd-portal.net","43.229.84.19"],description:"WarHawk backdoor targeting Chittagong Port management systems.",time:"2026-06-20 04:12",source:"Kaspersky",source_url:"https://kaspersky.com"},
+  {id:"d4",apt:"Transparent Tribe",origin:"Pakistan",flag:"🇵🇰",color:"#f97316",ip:"103.255.4.24",asn:"AS45595 — PKTELECOM",city:"Islamabad",country:"Pakistan",lat:33.72,lng:73.06,sector:"Military",target_ip:"192.168.45.12",target_org:"Bangladesh Army HQ",target_asn:"AS38197 BTCL-BD",target_city:"Dhaka",target_lat:23.78,target_lng:90.39,target_device:"Windows 10 Workstation",motivation:"Military Intelligence",severity:"high",malware:"CrimsonRAT v5",ttp:["T1566","T1059","T1547"],iocs:["army-bd.info","CrimsonRAT"],description:"CrimsonRAT spearphishing targeting Bangladesh Army personnel.",time:"2026-06-20 03:40",source:"MITRE ATT&CK",source_url:"https://attack.mitre.org"},
+  {id:"d5",apt:"Mustang Panda",origin:"China",flag:"🇨🇳",color:"#f97316",ip:"61.135.169.78",asn:"AS4808 — CNCGROUP-CN",city:"Beijing",country:"China",lat:39.90,lng:116.40,sector:"Telecom",target_ip:"116.68.96.1",target_org:"BTRC Network",target_asn:"AS24389 BTRC-BD",target_city:"Dhaka",target_lat:23.73,target_lng:90.40,target_device:"Cisco Router IOS 15.7",motivation:"Telecom Espionage",severity:"high",malware:"PlugX RAT v4",ttp:["T1574.002","T1027","T1090"],iocs:["61.135.169.78","btrc-update.net"],description:"PlugX RAT DLL sideloading targeting BTRC telecom infrastructure.",time:"2026-06-20 03:28",source:"FortiGuard",source_url:"https://fortiguard.com"},
+  {id:"d6",apt:"Volt Typhoon",origin:"China",flag:"🇨🇳",color:"#ef4444",ip:"114.119.130.44",asn:"AS4837 — CHINA169",city:"Shanghai",country:"China",lat:31.22,lng:121.46,sector:"Energy",target_ip:"202.134.7.11",target_org:"DESCO Power Grid",target_asn:"AS38234 DESCO-BD",target_city:"Dhaka",target_lat:23.63,target_lng:90.50,target_device:"SCADA Siemens S7-1500",motivation:"Critical Infra",severity:"critical",malware:"LotL — wmic/netsh",ttp:["T1078","T1133","T1190"],iocs:["114.119.130.44","desco-bd.cn"],description:"Living-off-the-land attack on DESCO power grid ICS/SCADA.",time:"2026-06-19 23:18",source:"CISA KEV",source_url:"https://cisa.gov"},
+  {id:"d7",apt:"Bitter APT",origin:"South Asia",flag:"🌏",color:"#f97316",ip:"49.206.212.84",asn:"AS17488 — HATHWAY-IN",city:"Delhi",country:"India",lat:28.61,lng:77.20,sector:"Military",target_ip:"10.10.50.5",target_org:"RAB Network",target_asn:"AS38197 RAB-BD",target_city:"Dhaka",target_lat:23.80,target_lng:90.38,target_device:"Windows Server 2019",motivation:"Military Intelligence",severity:"high",malware:"ZxxZ RAT + CVE-2025-6218",ttp:["T1566.001","T1203","T1059"],iocs:["CVE-2025-6218","rab-bd-update.net"],description:"WinRAR zero-day delivering ZxxZ RAT to RAB military officials.",time:"2026-06-19 05:47",source:"NSFOCUS",source_url:"https://nsfocus.com"},
+  {id:"d8",apt:"TA505 / Cl0p",origin:"Russia",flag:"🇷🇺",color:"#ef4444",ip:"185.220.101.33",asn:"AS204923 — RETN-AS",city:"Moscow",country:"Russia",lat:55.75,lng:37.62,sector:"Banking",target_ip:"203.190.10.5",target_org:"Sonali Bank Core System",target_asn:"AS55666 SBBL-BD",target_city:"Dhaka",target_lat:23.80,target_lng:90.34,target_device:"Windows Server 2016",motivation:"Ransomware",severity:"critical",malware:"Cl0p Ransomware",ttp:["T1486","T1657","T1566"],iocs:["185.220.101.33","sonali-bd-update.ru"],description:"Cl0p ransomware via SMB targeting Sonali Bank core banking.",time:"2026-06-19 02:55",source:"Group-IB",source_url:"https://group-ib.com"},
+];
+
+drawBase();
+loadData();
+setInterval(loadData, 5*60*1000); // Refresh every 5 min
+setInterval(()=>{document.getElementById('s-time').textContent=new Date().toTimeString().slice(0,5);},30000);
+</script>
+</body>
+</html>
