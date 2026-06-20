@@ -8,7 +8,7 @@ import os, re, json, time, hashlib, datetime, requests
 from pathlib import Path
 
 OTX_KEY     = os.getenv("OTX_API_KEY", "1da71ce525e4d7aea7b4fd712b47603fd62f9c14c07e9744426ba18c1b002078")
-SHODAN_KEY  = os.getenv("SHODAN_API_KEY", "https://discord.com/api/webhooks/1516728425841295544/vm0rE5IdlXlo1T42uz-ga66ZRw2pMOScvdGk_AyMiGvGdU2Ut9MoQeJStbGW4-73BfGD")
+SHODAN_KEY  = os.getenv("SHODAN_API_KEY", "")
 IPINFO_KEY  = os.getenv("IPINFO_KEY", "")   # ipinfo.io free key
 OUT_FILE    = Path("docs/live_threats.json")
 Path("docs").mkdir(exist_ok=True)
