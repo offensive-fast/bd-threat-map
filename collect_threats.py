@@ -9,7 +9,7 @@ from pathlib import Path
 
 OTX_KEY     = os.getenv("OTX_API_KEY", "1da71ce525e4d7aea7b4fd712b47603fd62f9c14c07e9744426ba18c1b002078")
 SHODAN_KEY  = os.getenv("SHODAN_API_KEY", "")
-IPINFO_KEY  = os.getenv("IPINFO_KEY", "")   # ipinfo.io free key
+IPINFO_KEY  = os.getenv("IPINFO_KEY", "f546dce878f98a")   # ipinfo.io free key
 OUT_FILE    = Path("docs/live_threats.json")
 Path("docs").mkdir(exist_ok=True)
 
