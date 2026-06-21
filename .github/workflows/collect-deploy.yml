@@ -43,7 +43,9 @@ jobs:
         run: |
           git config user.name  "BD Threat Bot"
           git config user.email "bot@bd-threat-map.local"
+          git stash
           git pull --rebase origin main
+          git stash pop
           git add docs/live_threats.json
           git diff --staged --quiet || git commit -m "chore: update threats $(date -u +'%Y-%m-%d %H:%M')"
           git push origin main
