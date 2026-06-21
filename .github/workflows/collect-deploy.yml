@@ -1,4 +1,4 @@
-name: BD Live Threat Map
+name: 🇧🇩 BD Live Threat Map — Collect & Deploy
 
 on:
   schedule:
@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -33,14 +34,27 @@ jobs:
 
       - name: Collect live threat data
         env:
-          OTX_API_KEY:     ${{ secrets.OTX_API_KEY }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          OTX_API_KEY:      ${{ secrets.OTX_API_KEY }}
+          DISCORD_WEBHOOK:  ${{ secrets.DISCORD_WEBHOOK }}
+          IPINFO_KEY:       ${{ secrets.IPINFO_KEY }}
         run: python3 collect_threats.py
 
-      - name: Deploy to GitHub Pages
+      - name: Commit live_threats.json
+        run: |
+          git config user.name  "BD Threat Bot"
+          git config user.email "bot@bd-threat-map.local"
+          git pull --rebase origin main
+          git add docs/live_threats.json
+          git diff --staged --quiet || git commit -m "chore: update threats $(date -u +'%Y-%m-%d %H:%M')"
+          git push origin main
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/
 
-      - name: Deploy Pages
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
