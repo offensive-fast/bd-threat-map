@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T10:33:02.388160",
+  "updated": "2026-07-07T18:34:39.167664",
   "total": 6,
   "threats": [
     {
@@ -12,8 +12,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 2.7652848264396477,
-      "lng": 0.078840926642056,
+      "lat": -2.565736271071337,
+      "lng": 0.4598620212554376,
       "sector": "Military",
       "target_ip": "192.168.45.12",
       "target_org": "Bangladesh Army HQ",
@@ -34,7 +34,7 @@
         "CVE-2026-11405"
       ],
       "description": "Several versions of firmware released by Chinese network device manufacturer Tenda have been found to embed an undocumented authentication backdoor that enables administrative access to the devices' w",
-      "time": "2026-07-07 10:32",
+      "time": "2026-07-07 18:34",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/certcc-warns-of-hidden-admin-backdoor.html"
     },
@@ -48,15 +48,15 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 0.09995359668433146,
-      "lng": -0.7860688506686015,
+      "lat": -0.854424475995812,
+      "lng": -0.28173655006928566,
       "sector": "Military",
-      "target_ip": "192.168.45.12",
-      "target_org": "Bangladesh Army HQ",
-      "target_asn": "AS38197 BTCL-BD",
+      "target_ip": "10.10.50.5",
+      "target_org": "RAB Network",
+      "target_asn": "AS38197 RAB-BD",
       "target_city": "Dhaka",
-      "target_lat": 23.78,
-      "target_lng": 90.39,
+      "target_lat": 23.8,
+      "target_lng": 90.38,
       "target_device": "Reported Target",
       "motivation": "Attack",
       "severity": "high",
@@ -68,12 +68,12 @@
         "CVE-2026-40138"
       ],
       "description": "BeyondTrust has released updates to address two critical security flaws affecting Remote Support (RS) and Privileged Remote Access (PRA) products that, if successfully exploited, could allow unauthent",
-      "time": "2026-07-07 10:32",
+      "time": "2026-07-07 18:34",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/beyondtrust-patches-critical-auth.html"
     },
     {
-      "id": "a537db0e",
+      "id": "84632c78",
       "apt": "Unknown APT",
       "origin": "Unknown",
       "flag": "🌐",
@@ -82,32 +82,28 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -1.27333915754775,
-      "lng": 1.968544373607651,
+      "lat": -1.9912841487600839,
+      "lng": -1.261074170588911,
       "sector": "Military",
-      "target_ip": "192.168.45.12",
-      "target_org": "Bangladesh Army HQ",
-      "target_asn": "AS38197 BTCL-BD",
+      "target_ip": "10.10.50.5",
+      "target_org": "RAB Network",
+      "target_asn": "AS38197 RAB-BD",
       "target_city": "Dhaka",
-      "target_lat": 23.78,
-      "target_lng": 90.39,
+      "target_lat": 23.8,
+      "target_lng": 90.38,
       "target_device": "Reported Target",
       "motivation": "Attack",
-      "severity": "high",
+      "severity": "medium",
       "malware": "Unknown",
-      "ttp": [
-        "T1190"
-      ],
-      "iocs": [
-        "CVE-2026-20896"
-      ],
-      "description": "Threat actors have been observed attempting to exploit a recently patched critical security flaw in Gitea Docker images, according to Sysdig.\n\nThe vulnerability in question is CVE-2026-20896 (CVSS sco",
-      "time": "2026-07-07 10:32",
+      "ttp": [],
+      "iocs": [],
+      "description": "Cybersecurity researchers have disclosed details of a now-patched critical session isolation vulnerability in Writer, an enterprise generative artificial intelligence (AI) platform, that could result ",
+      "time": "2026-07-07 18:34",
       "source": "RSS: The Hacker News",
-      "source_url": "https://thehackernews.com/2026/07/threat-actors-probe-gitea-docker-flaw.html"
+      "source_url": "https://thehackernews.com/2026/07/writer-ai-flaw-could-let-agent-previews.html"
     },
     {
-      "id": "b3b15397",
+      "id": "0eff8c9a",
       "apt": "Unknown APT",
       "origin": "Unknown",
       "flag": "🌐",
@@ -116,8 +112,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -0.6848609618771544,
-      "lng": -2.219844832191148,
+      "lat": 1.3743279114639924,
+      "lng": 1.1306237091467137,
       "sector": "Military",
       "target_ip": "192.168.45.12",
       "target_org": "Bangladesh Army HQ",
@@ -127,18 +123,14 @@
       "target_lng": 90.39,
       "target_device": "Reported Target",
       "motivation": "Attack",
-      "severity": "high",
+      "severity": "medium",
       "malware": "Unknown",
-      "ttp": [
-        "T1190"
-      ],
-      "iocs": [
-        "CVE-2026-48282"
-      ],
-      "description": "Attackers are now exploiting a maximum-severity Adobe ColdFusion vulnerability tracked as CVE-2026-48282, according to vulnerability intelligence company KEVIntel. [...]",
-      "time": "2026-07-07 10:32",
+      "ttp": [],
+      "iocs": [],
+      "description": "A 16-year-old Linux kernel vulnerability, dubbed Januscape, allows attackers to escape a virtual machine and execute arbitrary code on the host. [...]",
+      "time": "2026-07-07 18:34",
       "source": "RSS: Bleeping Computer",
-      "source_url": "https://www.bleepingcomputer.com/news/security/max-severity-adobe-coldfusion-flaw-now-exploited-in-attacks/"
+      "source_url": "https://www.bleepingcomputer.com/news/linux/new-januscape-linux-kernel-flaw-allows-vm-escape-on-intel-amd-devices/"
     },
     {
       "id": "2f752587",
@@ -150,8 +142,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 1.127715458036242,
-      "lng": -0.4771130063841875,
+      "lat": 2.263454216795579,
+      "lng": 2.583366358556125,
       "sector": "Military",
       "target_ip": "192.168.45.12",
       "target_org": "Bangladesh Army HQ",
@@ -166,7 +158,7 @@
       "ttp": [],
       "iocs": [],
       "description": "Researching OpenClaw vulnerabilities, malicious skills, and other security issues with the popular agent, and providing tips on how to mitigate them.",
-      "time": "2026-07-07 10:33",
+      "time": "2026-07-07 18:34",
       "source": "RSS: Kaspersky",
       "source_url": "https://securelist.com/openclaw-security/120484/"
     },
@@ -180,8 +172,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 2.1466215298743947,
-      "lng": 1.631845730238874,
+      "lat": -0.498105475159881,
+      "lng": -2.8922056794082356,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -200,16 +192,16 @@
         "CVE-2024-2658"
       ],
       "description": "Analysis of CVE-2024-2658 as found in Schneider Electric's Floating License Manager. Discover how this FlexNet Publisher vulnerability potentially allows attackers to escalate to NT AUTHORITY\\SYSTEM p",
-      "time": "2026-07-07 10:33",
+      "time": "2026-07-07 18:34",
       "source": "RSS: Kaspersky",
       "source_url": "https://securelist.com/tr/schneider-electric-cve-2024-2658-vulnerability/120436/"
     }
   ],
   "stats": {
     "critical": 0,
-    "high": 4,
-    "medium": 2,
+    "high": 2,
+    "medium": 4,
     "countries": 1,
-    "iocs": 5
+    "iocs": 3
   }
 }
