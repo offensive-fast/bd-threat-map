@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-21T23:30:24.923572",
+  "updated": "2026-07-22T00:58:51.921851",
   "total": 10,
   "threats": [
     {
@@ -12,8 +12,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -1.2812356993536353,
-      "lng": -2.398430495759179,
+      "lat": -2.013030283279295,
+      "lng": 2.843196529918103,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -33,7 +33,7 @@
         "CVE-2026-0257"
       ],
       "description": "Threat actors have been observed exploiting a now-patched high-severity Palo Alto Networks PAN-OS vulnerability as an entry point to deploy Qilin (aka Agenda) ransomware on victim environments.\n\nArcti",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/qilin-ransomware-attackers-exploit-pan.html"
     },
@@ -47,8 +47,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 1.566110812084534,
-      "lng": 2.932178574570556,
+      "lat": -1.47677216792572,
+      "lng": -2.030082522834634,
       "sector": "Military",
       "target_ip": "192.168.45.12",
       "target_org": "Bangladesh Army HQ",
@@ -67,7 +67,7 @@
         "CVE-2026-50522"
       ],
       "description": "A third SharePoint Server flaw patched by Microsoft as part of its Patch Tuesday update for July 2026 has come under active exploitation, per watchTowr.\n\nThe vulnerability in question is CVE-2026-5052",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/critical-sharepoint-rce-cve-2026-50522.html"
     },
@@ -81,8 +81,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 0.3513876973110275,
-      "lng": 2.7867704298215044,
+      "lat": -1.4913223235194013,
+      "lng": 0.7037598804688754,
       "sector": "Military",
       "target_ip": "192.168.45.12",
       "target_org": "Bangladesh Army HQ",
@@ -98,11 +98,11 @@
         "T1190"
       ],
       "iocs": [
-        "CVE-2026-63030",
-        "CVE-2026-60137"
+        "CVE-2026-60137",
+        "CVE-2026-63030"
       ],
       "description": "Attackers have begun to exploit two critical vulnerabilities in WordPress that, when combined together, enable unauthenticated remote code execution (RCE) and complete compromise of vulnerable website",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/wordpress-wp2shell-exploitation-grows.html"
     },
@@ -116,8 +116,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 0.99935324751588,
-      "lng": 2.8864255097025486,
+      "lat": 1.5142014297544257,
+      "lng": -2.178479472942043,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -137,7 +137,7 @@
         "CVE-2026-50522"
       ],
       "description": "Hackers are actively exploiting the critical CVE-2026-50522 vulnerability in Microsoft SharePoint to steal machine keys and maintain access even after affected servers are patched. [...]",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: Bleeping Computer",
       "source_url": "https://www.bleepingcomputer.com/news/security/critical-sharepoint-rce-flaw-exploited-to-steal-machine-keys/"
     },
@@ -151,8 +151,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 0.7456196091664689,
-      "lng": -0.30091162325164067,
+      "lat": 0.0019127291290468307,
+      "lng": 2.856701294468728,
       "sector": "Military",
       "target_ip": "192.168.45.12",
       "target_org": "Bangladesh Army HQ",
@@ -168,11 +168,11 @@
         "T1190"
       ],
       "iocs": [
-        "CVE-2026-63030",
-        "CVE-2026-60137"
+        "CVE-2026-60137",
+        "CVE-2026-63030"
       ],
       "description": "Hackers are exploiting the \"wp2shell\" critical vulnerability suite (CVE-2026-63030 and CVE-2026-60137) affecting WordPress Core to deploy persistent webshells and install malicious plugins on affected",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: Bleeping Computer",
       "source_url": "https://www.bleepingcomputer.com/news/security/critical-wp2shell-wordpress-flaws-exploited-to-install-webshells/"
     },
@@ -186,15 +186,15 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 2.447244107223133,
-      "lng": -2.9727893604781115,
+      "lat": 2.2171018568686787,
+      "lng": -0.5853249928890158,
       "sector": "Government",
-      "target_ip": "103.116.196.50",
-      "target_org": "Bangladesh Election Commission",
-      "target_asn": "AS38193 BTTB-BD",
-      "target_city": "Dhaka",
-      "target_lat": 23.68,
-      "target_lng": 90.35,
+      "target_ip": "103.118.44.20",
+      "target_org": "Ministry of Foreign Affairs",
+      "target_asn": "AS17497 MOFA-BD",
+      "target_city": "Rajshahi",
+      "target_lat": 24.36,
+      "target_lng": 88.6,
       "target_device": "Reported Target",
       "motivation": "Attack",
       "severity": "medium",
@@ -202,7 +202,7 @@
       "ttp": [],
       "iocs": [],
       "description": "Google's DeepMind on Tuesday announced the release of Gemini 3.5 Flash Cyber, a specialized artificial intelligence (AI) model built atop 3.5 Flash that's designed to discover, validate, and patch vul",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/google-launches-gemini-35-flash-cyber.html"
     },
@@ -216,15 +216,15 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 0.5184064194951041,
-      "lng": -0.20727633256116906,
+      "lat": -0.6991724339365324,
+      "lng": -1.3833091624139424,
       "sector": "Military",
-      "target_ip": "192.168.45.12",
-      "target_org": "Bangladesh Army HQ",
-      "target_asn": "AS38197 BTCL-BD",
+      "target_ip": "10.10.50.5",
+      "target_org": "RAB Network",
+      "target_asn": "AS38197 RAB-BD",
       "target_city": "Dhaka",
-      "target_lat": 23.78,
-      "target_lng": 90.39,
+      "target_lat": 23.8,
+      "target_lng": 90.38,
       "target_device": "Reported Target",
       "motivation": "Attack",
       "severity": "medium",
@@ -232,7 +232,7 @@
       "ttp": [],
       "iocs": [],
       "description": "Zimbra has rolled out fixes to address multiple critical security issues, including a command injection flaw in the Simple Network Management Protocol (SNMP) monitoring component.\n\nAs many as nine sec",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/zimbra-patches-critical-snmp-command.html"
     },
@@ -246,8 +246,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -0.3350608477577319,
-      "lng": 0.7433261491376237,
+      "lat": 1.9092044785211435,
+      "lng": -0.25089068145465543,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -262,7 +262,7 @@
       "ttp": [],
       "iocs": [],
       "description": "In June 2026, Insikt Group® identified 59 high-impact vulnerabilities that should be prioritized for remediation, 30 of which had a Very Critical Recorded Future Risk Score. This represents a 47% incr",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: Recorded Future",
       "source_url": "https://www.recordedfuture.com/blog/june-2026-cve-landscape"
     },
@@ -276,8 +276,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -0.5354597355670152,
-      "lng": 0.5337122226496156,
+      "lat": 2.7680109181447197,
+      "lng": 2.132909890851961,
       "sector": "Government",
       "target_ip": "103.116.196.50",
       "target_org": "Bangladesh Election Commission",
@@ -294,7 +294,7 @@
         "www.thedailystar.net"
       ],
       "description": "In an interview with The Daily Star, Julian said Bangladesh has already built an extensive mobile network, with almost universal 4G population coverage, but still trails several countries in South and",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: Daily Star",
       "source_url": "https://www.thedailystar.net/news/tech-startup/news/the-world-waiting-hear-bangladeshs-digital-inclusion-story-4228986"
     },
@@ -308,8 +308,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 0.6809478862687115,
-      "lng": 1.7479526430462204,
+      "lat": 2.6995537829598177,
+      "lng": -1.4210147567581848,
       "sector": "Telecom",
       "target_ip": "203.76.192.45",
       "target_org": "Grameenphone Core",
@@ -326,7 +326,7 @@
         "www.thedailystar.net"
       ],
       "description": "Robi Axiata has expanded its electric bike programme across Bangladesh as the mobile network operator seeks to improve last-mile customer services while reducing the environmental impact of its field ",
-      "time": "2026-07-21 23:30",
+      "time": "2026-07-22 00:58",
       "source": "RSS: Daily Star",
       "source_url": "https://www.thedailystar.net/news/tech-startup/news/robi-scales-electric-bikes-support-field-operations-nationwide-4226576"
     }
