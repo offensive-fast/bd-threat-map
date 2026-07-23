@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-23T15:13:59.068447",
+  "updated": "2026-07-23T16:58:36.101514",
   "total": 5,
   "threats": [
     {
@@ -12,8 +12,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 2.4454125634213533,
-      "lng": 0.06091348747978165,
+      "lat": 0.15585014884413795,
+      "lng": -0.0355207341076218,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -32,9 +32,42 @@
         "CVE-2026-16232"
       ],
       "description": "Check Point has released security updates to address multiple vulnerabilities impacting Security Management and Multi-Domain Management (MDSM) products, including a critical flaw that has come under a",
-      "time": "2026-07-23 15:13",
+      "time": "2026-07-23 16:58",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/check-point-patches-exploited.html"
+    },
+    {
+      "id": "1b5cdb9a",
+      "apt": "Unknown APT",
+      "origin": "Unknown",
+      "flag": "🌐",
+      "color": "#6b7280",
+      "ip": "Unknown",
+      "asn": "Unknown — News Report",
+      "city": "Unknown",
+      "country": "Unknown",
+      "lat": 2.733996554932572,
+      "lng": -2.1191128725875443,
+      "sector": "Military",
+      "target_ip": "10.10.50.5",
+      "target_org": "RAB Network",
+      "target_asn": "AS38197 RAB-BD",
+      "target_city": "Dhaka",
+      "target_lat": 23.8,
+      "target_lng": 90.38,
+      "target_device": "Reported Target",
+      "motivation": "Attack",
+      "severity": "high",
+      "malware": "Unknown",
+      "ttp": [
+        "T1566",
+        "T1190"
+      ],
+      "iocs": [],
+      "description": "CISA is warning that the Russian state-sponsored hacking group Laundry Bear, also known as Void Blizzard, is targeting organizations using Zimbra Collaboration email servers by combining phishing atta",
+      "time": "2026-07-23 16:58",
+      "source": "RSS: Bleeping Computer",
+      "source_url": "https://www.bleepingcomputer.com/news/security/russian-hackers-exploit-zimbra-zero-click-flaw-for-email-theft/"
     },
     {
       "id": "ed00046b",
@@ -46,8 +79,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 2.4646853120308814,
-      "lng": -1.3249794660970693,
+      "lat": 1.372350438858783,
+      "lng": 2.8369115518535146,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -62,12 +95,12 @@
       "ttp": [],
       "iocs": [],
       "description": "Cybersecurity researchers have uncovered a sandbox escape vulnerability in Anthropic's Claude Cowork that makes it possible to break out of the confines of a Linux virtual machine (VM) within which th",
-      "time": "2026-07-23 15:13",
+      "time": "2026-07-23 16:58",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/claude-cowork-flaw-could-let-ai-agent.html"
     },
     {
-      "id": "d5941910",
+      "id": "7d362d39",
       "apt": "Unknown APT",
       "origin": "Unknown",
       "flag": "🌐",
@@ -76,8 +109,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -2.452139716866915,
-      "lng": 2.674474029998077,
+      "lat": -0.9564044471135813,
+      "lng": -2.1945297124093077,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -93,44 +126,10 @@
         "T1190"
       ],
       "iocs": [
-        "CVE-2026-8933"
-      ],
-      "description": "Cybersecurity researchers have disclosed details of a new local privilege escalation (LPE) vulnerability in snap-confine that an unprivileged user can trigger to obtain root access and gain complete c",
-      "time": "2026-07-23 15:13",
-      "source": "RSS: The Hacker News",
-      "source_url": "https://thehackernews.com/2026/07/ubuntu-snap-confine-flaw-could-give.html"
-    },
-    {
-      "id": "7d362d39",
-      "apt": "Unknown APT",
-      "origin": "Unknown",
-      "flag": "🌐",
-      "color": "#6b7280",
-      "ip": "Unknown",
-      "asn": "Unknown — News Report",
-      "city": "Unknown",
-      "country": "Unknown",
-      "lat": 2.877061188992414,
-      "lng": -0.8994323973076526,
-      "sector": "Military",
-      "target_ip": "192.168.45.12",
-      "target_org": "Bangladesh Army HQ",
-      "target_asn": "AS38197 BTCL-BD",
-      "target_city": "Dhaka",
-      "target_lat": 23.78,
-      "target_lng": 90.39,
-      "target_device": "Reported Target",
-      "motivation": "Attack",
-      "severity": "medium",
-      "malware": "Unknown",
-      "ttp": [
-        "T1190"
-      ],
-      "iocs": [
         "CVE-2026-64600"
       ],
       "description": "A nine-year-old race condition vulnerability in the Linux kernel's XFS filesystem, tracked as CVE-2026-64600, allows local attackers to overwrite protected files and gain root privileges. [...]",
-      "time": "2026-07-23 15:13",
+      "time": "2026-07-23 16:58",
       "source": "RSS: Bleeping Computer",
       "source_url": "https://www.bleepingcomputer.com/news/linux/new-refluxfs-linux-flaw-lets-attackers-gain-root-privileges/"
     },
@@ -144,8 +143,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -0.1250219428716477,
-      "lng": 1.1603834346806634,
+      "lat": -1.0975923607065958,
+      "lng": 2.4986219760598942,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -160,16 +159,16 @@
       "ttp": [],
       "iocs": [],
       "description": "In June 2026, Insikt Group® identified 59 high-impact vulnerabilities that should be prioritized for remediation, 30 of which had a Very Critical Recorded Future Risk Score. This represents a 47% incr",
-      "time": "2026-07-23 15:13",
+      "time": "2026-07-23 16:58",
       "source": "RSS: Recorded Future",
       "source_url": "https://www.recordedfuture.com/blog/june-2026-cve-landscape"
     }
   ],
   "stats": {
     "critical": 0,
-    "high": 1,
-    "medium": 4,
+    "high": 2,
+    "medium": 3,
     "countries": 1,
-    "iocs": 3
+    "iocs": 2
   }
 }
