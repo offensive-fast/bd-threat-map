@@ -1,9 +1,9 @@
 {
-  "updated": "2026-07-27T18:04:34.448518",
-  "total": 3,
+  "updated": "2026-07-27T20:05:41.483444",
+  "total": 2,
   "threats": [
     {
-      "id": "2468b4ae",
+      "id": "371e8259",
       "apt": "Unknown APT",
       "origin": "Unknown",
       "flag": "🌐",
@@ -12,8 +12,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": 1.9138695490094744,
-      "lng": -0.4663108321145861,
+      "lat": -0.02605866709164939,
+      "lng": 2.5297932718621032,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -25,44 +25,10 @@
       "motivation": "Attack",
       "severity": "medium",
       "malware": "Unknown",
-      "ttp": [
-        "T1190"
-      ],
-      "iocs": [
-        "CVE-2026-16723"
-      ],
-      "description": "Security firms ThreatBook and Imperva say attackers are targeting a critical flaw in Fastjson, Alibaba's JSON library for Java. In affected Spring Boot applications, a malicious JSON request can execu",
-      "time": "2026-07-27 18:04",
-      "source": "RSS: The Hacker News",
-      "source_url": "https://thehackernews.com/2026/07/fastjson-1x-rce-vulnerability-targeted.html"
-    },
-    {
-      "id": "371e8259",
-      "apt": "Unknown APT",
-      "origin": "Unknown",
-      "flag": "🌐",
-      "color": "#6b7280",
-      "ip": "Unknown",
-      "asn": "Unknown — News Report",
-      "city": "Unknown",
-      "country": "Unknown",
-      "lat": 0.5264960209968783,
-      "lng": -1.2226871901788268,
-      "sector": "Military",
-      "target_ip": "192.168.45.12",
-      "target_org": "Bangladesh Army HQ",
-      "target_asn": "AS38197 BTCL-BD",
-      "target_city": "Dhaka",
-      "target_lat": 23.78,
-      "target_lng": 90.39,
-      "target_device": "Reported Target",
-      "motivation": "Attack",
-      "severity": "medium",
-      "malware": "Unknown",
       "ttp": [],
       "iocs": [],
       "description": "In June 2026, Insikt Group® identified 59 high-impact vulnerabilities that should be prioritized for remediation, 30 of which had a Very Critical Recorded Future Risk Score. This represents a 47% incr",
-      "time": "2026-07-27 18:04",
+      "time": "2026-07-27 20:05",
       "source": "RSS: Recorded Future",
       "source_url": "https://www.recordedfuture.com/blog/june-2026-cve-landscape"
     },
@@ -76,8 +42,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -1.6615024708724249,
-      "lng": -0.35255059575742154,
+      "lat": -0.6772282799878928,
+      "lng": -0.14867523255789195,
       "sector": "Energy",
       "target_ip": "202.134.7.11",
       "target_org": "DESCO Power Grid SCADA",
@@ -94,7 +60,7 @@
         "www.thedailystar.net"
       ],
       "description": "Teams of Bangladeshi students won two gold medals and two silver medals at the World Invention Creativity Olympics (WICO) 2026 held in Seoul, South Korea.",
-      "time": "2026-07-27 18:04",
+      "time": "2026-07-27 20:05",
       "source": "RSS: Daily Star",
       "source_url": "https://www.thedailystar.net/news/tech-startup/news/bangladeshi-students-win-big-world-invention-creativity-olympics-2026-4233741"
     }
@@ -102,8 +68,8 @@
   "stats": {
     "critical": 0,
     "high": 0,
-    "medium": 3,
+    "medium": 2,
     "countries": 1,
-    "iocs": 2
+    "iocs": 1
   }
 }
