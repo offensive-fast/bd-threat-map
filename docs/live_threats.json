@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-27T06:52:21.200322",
+  "updated": "2026-07-27T10:41:53.136097",
   "total": 5,
   "threats": [
     {
@@ -12,15 +12,15 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Russia",
-      "lat": 60.22842048583574,
-      "lng": 105.27271993010847,
+      "lat": 60.49120675731147,
+      "lng": 102.61236056064759,
       "sector": "Government",
-      "target_ip": "103.118.44.20",
-      "target_org": "Ministry of Foreign Affairs",
-      "target_asn": "AS17497 MOFA-BD",
-      "target_city": "Rajshahi",
-      "target_lat": 24.36,
-      "target_lng": 88.6,
+      "target_ip": "103.116.196.50",
+      "target_org": "Bangladesh Election Commission",
+      "target_asn": "AS38193 BTTB-BD",
+      "target_city": "Dhaka",
+      "target_lat": 23.68,
+      "target_lng": 90.35,
       "target_device": "Reported Target",
       "motivation": "Attack",
       "severity": "critical",
@@ -31,7 +31,7 @@
       ],
       "iocs": [],
       "description": "Threat actors linked to the Cl0p (aka Chubby Scorpius, FIN11, Graceful Spider, and Lace Tempest) ransomware campaign are exploiting flaws in internet-exposed PTC Windmill and FlexPLM deployments as pa",
-      "time": "2026-07-27 06:52",
+      "time": "2026-07-27 10:41",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/cl0p-affiliates-target-internet-exposed.html"
     },
@@ -45,8 +45,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "North Korea",
-      "lat": 42.974442630162265,
-      "lng": 129.32374608815664,
+      "lat": 40.51703376524884,
+      "lng": 125.59856883704134,
       "sector": "Government",
       "target_ip": "203.76.100.1",
       "target_org": "Prime Minister Office",
@@ -63,7 +63,7 @@
       ],
       "iocs": [],
       "description": "The North Korean threat actors behind the ClickFix-style campaigns that employ typosquatted Zoom and Microsoft Teams domains have been found to operate an active phishing kit to impersonate the videoc",
-      "time": "2026-07-27 06:52",
+      "time": "2026-07-27 10:41",
       "source": "RSS: The Hacker News",
       "source_url": "https://thehackernews.com/2026/07/bluenoroff-zoom-phishing-kit-profiles.html"
     },
@@ -77,42 +77,8 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -0.6227908513870606,
-      "lng": -1.2175914526575633,
-      "sector": "Military",
-      "target_ip": "192.168.45.12",
-      "target_org": "Bangladesh Army HQ",
-      "target_asn": "AS38197 BTCL-BD",
-      "target_city": "Dhaka",
-      "target_lat": 23.78,
-      "target_lng": 90.39,
-      "target_device": "Reported Target",
-      "motivation": "Attack",
-      "severity": "medium",
-      "malware": "Unknown",
-      "ttp": [
-        "T1190"
-      ],
-      "iocs": [
-        "CVE-2026-16723"
-      ],
-      "description": "Security firms ThreatBook and Imperva say attackers are targeting a critical flaw in Fastjson, Alibaba's JSON library for Java. In affected Spring Boot applications, a malicious JSON request can execu",
-      "time": "2026-07-27 06:52",
-      "source": "RSS: The Hacker News",
-      "source_url": "https://thehackernews.com/2026/07/fastjson-1x-rce-vulnerability-targeted.html"
-    },
-    {
-      "id": "b9bf830d",
-      "apt": "Unknown APT",
-      "origin": "Unknown",
-      "flag": "🌐",
-      "color": "#6b7280",
-      "ip": "Unknown",
-      "asn": "Unknown — News Report",
-      "city": "Unknown",
-      "country": "Unknown",
-      "lat": 1.7232113591186726,
-      "lng": -2.298658484526732,
+      "lat": -0.47252066191544184,
+      "lng": -2.728243888150408,
       "sector": "Military",
       "target_ip": "10.10.50.5",
       "target_org": "RAB Network",
@@ -125,14 +91,15 @@
       "severity": "medium",
       "malware": "Unknown",
       "ttp": [
-        "T1566",
-        "T1041"
+        "T1190"
       ],
-      "iocs": [],
-      "description": "Cybersecurity researchers have disclosed a critical vulnerability in OpenAI's ChatGPT Workspace Agents that could have allowed a single phishing link to stealthily build, authorize, and deploy an auto",
-      "time": "2026-07-27 06:52",
+      "iocs": [
+        "CVE-2026-16723"
+      ],
+      "description": "Security firms ThreatBook and Imperva say attackers are targeting a critical flaw in Fastjson, Alibaba's JSON library for Java. In affected Spring Boot applications, a malicious JSON request can execu",
+      "time": "2026-07-27 10:41",
       "source": "RSS: The Hacker News",
-      "source_url": "https://thehackernews.com/2026/07/chatgpt-agentforger-flaw-could-deploy.html"
+      "source_url": "https://thehackernews.com/2026/07/fastjson-1x-rce-vulnerability-targeted.html"
     },
     {
       "id": "371e8259",
@@ -144,15 +111,15 @@
       "asn": "Unknown — News Report",
       "city": "Unknown",
       "country": "Unknown",
-      "lat": -2.3437106770520177,
-      "lng": -1.3016413847632629,
+      "lat": 1.034977772479099,
+      "lng": 1.7342722635255967,
       "sector": "Military",
-      "target_ip": "192.168.45.12",
-      "target_org": "Bangladesh Army HQ",
-      "target_asn": "AS38197 BTCL-BD",
+      "target_ip": "10.10.50.5",
+      "target_org": "RAB Network",
+      "target_asn": "AS38197 RAB-BD",
       "target_city": "Dhaka",
-      "target_lat": 23.78,
-      "target_lng": 90.39,
+      "target_lat": 23.8,
+      "target_lng": 90.38,
       "target_device": "Reported Target",
       "motivation": "Attack",
       "severity": "medium",
@@ -160,9 +127,41 @@
       "ttp": [],
       "iocs": [],
       "description": "In June 2026, Insikt Group® identified 59 high-impact vulnerabilities that should be prioritized for remediation, 30 of which had a Very Critical Recorded Future Risk Score. This represents a 47% incr",
-      "time": "2026-07-27 06:52",
+      "time": "2026-07-27 10:41",
       "source": "RSS: Recorded Future",
       "source_url": "https://www.recordedfuture.com/blog/june-2026-cve-landscape"
+    },
+    {
+      "id": "18af1c5d",
+      "apt": "Unknown APT",
+      "origin": "Unknown",
+      "flag": "🌐",
+      "color": "#6b7280",
+      "ip": "Unknown",
+      "asn": "Unknown — News Report",
+      "city": "Unknown",
+      "country": "Unknown",
+      "lat": 2.8853161119931796,
+      "lng": -0.4942857580844633,
+      "sector": "Energy",
+      "target_ip": "103.120.10.5",
+      "target_org": "BPDB Control Center",
+      "target_asn": "AS55819 BPDB-BD",
+      "target_city": "Dhaka",
+      "target_lat": 23.7,
+      "target_lng": 90.35,
+      "target_device": "Reported Target",
+      "motivation": "Attack",
+      "severity": "medium",
+      "malware": "www.thedailystar.net",
+      "ttp": [],
+      "iocs": [
+        "www.thedailystar.net"
+      ],
+      "description": "Teams of Bangladeshi students won two gold medals and two silver medals at the World Invention Creativity Olympics (WICO) 2026 held in Seoul, South Korea.",
+      "time": "2026-07-27 10:41",
+      "source": "RSS: Daily Star",
+      "source_url": "https://www.thedailystar.net/news/tech-startup/news/bangladeshi-students-win-big-world-invention-creativity-olympics-2026-4233741"
     }
   ],
   "stats": {
@@ -170,6 +169,6 @@
     "high": 1,
     "medium": 3,
     "countries": 3,
-    "iocs": 1
+    "iocs": 2
   }
 }
